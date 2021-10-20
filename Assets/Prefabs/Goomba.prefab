@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 5165543783422532072}
   - component: {fileID: 5165543783422532075}
   - component: {fileID: 5353164103121940161}
-  - component: {fileID: 1428794774221594554}
   - component: {fileID: -5086698536711702949}
+  - component: {fileID: 1881654416773019565}
+  - component: {fileID: 8376021222996661886}
   m_Layer: 0
   m_Name: Goomba
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5165543783422532074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.88586, y: -3.580145, z: 46.162285}
-  m_LocalScale: {x: 0.1573645, y: 0.16855861, z: 1}
+  m_LocalPosition: {x: -6.7603, y: -3.7203, z: 46.162285}
+  m_LocalScale: {x: 2.8454292, y: 2.4331706, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: de8c6a5debdef0943b338fecdc19081c, type: 3}
+  m_Sprite: {fileID: 2845955578587792609, guid: 9fca0a944ff694845a41a6bce5d73373, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,7 +107,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!60 &1428794774221594554
+--- !u!114 &-5086698536711702949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5165543783422532074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e2957a14a414545b8c2f8ebff46953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 1
+  speed: 2
+  isDeath: 0
+--- !u!60 &1881654416773019565
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +139,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.88, y: 4.24}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,103 +147,27 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.94, y: -1.3199999}
-      - {x: 0.81, y: -1.18}
-      - {x: 0.59999996, y: -1.04}
-      - {x: 0.59, y: -0.77}
-      - {x: 0.65999997, y: -0.74}
-      - {x: 0.98999995, y: -0.71999997}
-      - {x: 1.17, y: -0.68}
-      - {x: 1.3399999, y: -0.62}
-      - {x: 1.54, y: -0.47}
-      - {x: 1.65, y: -0.28}
-      - {x: 1.67, y: -0.14999999}
-      - {x: 1.67, y: 0.089999996}
-      - {x: 1.64, y: 0.21}
-      - {x: 1.4599999, y: 0.52}
-      - {x: 1.28, y: 0.84}
-      - {x: 1.1999999, y: 1.06}
-      - {x: 1.03, y: 1.36}
-      - {x: 1.2099999, y: 1.39}
-      - {x: 1.3199999, y: 1.27}
-      - {x: 1.36, y: 1.27}
-      - {x: 1.3199999, y: 1.53}
-      - {x: 1.1999999, y: 1.6899999}
-      - {x: 1.1, y: 1.74}
-      - {x: 1.02, y: 1.76}
-      - {x: 0.95, y: 1.76}
-      - {x: 0.81, y: 1.73}
-      - {x: 0.76, y: 1.6899999}
-      - {x: 0.66999996, y: 1.76}
-      - {x: 0.57, y: 1.81}
-      - {x: 0.5, y: 1.8399999}
-      - {x: 0.44, y: 1.86}
-      - {x: 0.28, y: 1.91}
-      - {x: -0.03, y: 1.91}
-      - {x: -0.089999996, y: 1.9}
-      - {x: -0.26, y: 1.87}
-      - {x: -0.42999998, y: 1.79}
-      - {x: -0.55, y: 1.77}
-      - {x: -0.7, y: 1.86}
-      - {x: -0.88, y: 1.8299999}
-      - {x: -0.98999995, y: 1.73}
-      - {x: -1.0699999, y: 1.53}
-      - {x: -1.06, y: 1.4699999}
-      - {x: -1, y: 1.4499999}
-      - {x: -0.84, y: 1.54}
-      - {x: -0.69, y: 1.53}
-      - {x: -0.91999996, y: 1.22}
-      - {x: -1, y: 1.09}
-      - {x: -1.4, y: 0.53999996}
-      - {x: -1.52, y: 0.31}
-      - {x: -1.54, y: 0.25}
-      - {x: -1.56, y: 0.14}
-      - {x: -1.56, y: -0.089999996}
-      - {x: -1.55, y: -0.14}
-      - {x: -1.5, y: -0.28}
-      - {x: -1.3199999, y: -0.45999998}
-      - {x: -1.1999999, y: -0.52}
-      - {x: -1.0699999, y: -0.58}
-      - {x: -0.78, y: -0.65}
-      - {x: -0.77, y: -0.66999996}
-      - {x: -0.90999997, y: -0.62}
-      - {x: -1.1, y: -0.63}
-      - {x: -1.29, y: -0.69}
-      - {x: -1.4499999, y: -0.84999996}
-      - {x: -1.4699999, y: -0.90999997}
-      - {x: -1.48, y: -1.05}
-      - {x: -1.42, y: -1.23}
-      - {x: -1.2099999, y: -1.4499999}
-      - {x: -0.96999997, y: -1.61}
-      - {x: -0.74, y: -1.6999999}
-      - {x: -0.65999997, y: -1.7199999}
-      - {x: -0.57, y: -1.7199999}
-      - {x: -0.48999998, y: -1.7099999}
-      - {x: -0.35999998, y: -1.5999999}
-      - {x: -0.32, y: -1.53}
-      - {x: -0.26, y: -1.35}
-      - {x: -0.25, y: -1.4}
-      - {x: -0.22, y: -1.48}
-      - {x: -0.099999994, y: -1.62}
-      - {x: 0.07, y: -1.74}
-      - {x: 0.25, y: -1.8299999}
-      - {x: 0.53999996, y: -1.9}
-      - {x: 0.76, y: -1.9}
-      - {x: 0.89, y: -1.8499999}
-      - {x: 0.97999996, y: -1.73}
-      - {x: 0.97999996, y: -1.42}
---- !u!114 &-5086698536711702949
-MonoBehaviour:
+    - - {x: -0.08, y: 0.08}
+      - {x: -0.08, y: -0.08}
+      - {x: 0.08, y: -0.08}
+      - {x: 0.08, y: 0.07}
+      - {x: 0.06, y: 0.08}
+--- !u!95 &8376021222996661886
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5165543783422532074}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e2957a14a414545b8c2f8ebff46953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  speed: 2
-  isMoveLeft: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c88209e19fc65444837ee65bca4c1ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
