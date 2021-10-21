@@ -9,7 +9,8 @@ public class MarioController : MonoBehaviour
     public float speed, force;
     public Transform topLeft, bottomRight;
     public LayerMask groundLayer;
-    public bool isMoveLeft;
+    public bool isMoveLeft, isDead;
+    private GameObject gameController;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class MarioController : MonoBehaviour
         speed = 4;
         force = 350;
         isGrounded = true;
+        isDead = false;
         obj = gameObject;
         spriteRenderer = obj.GetComponent<SpriteRenderer>();
         spriteRenderer.flipX = true; // turn right character
@@ -26,6 +28,7 @@ public class MarioController : MonoBehaviour
         anim.SetBool("isGround", true);
         anim.SetBool("isMoving", false);
         anim.SetBool("isFly", false);
+        gameController = GameObject.FindGameObjectWithTag("GameController");
     }
 
     // Update is called once per frame
@@ -65,22 +68,20 @@ public class MarioController : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy")
         {
-            if (transform.position.y - collision.gameObject.transform.position.y > 0.44f)
+            if (transform.position.y - collision.gameObject.transform.position.y > 0.4f)
             {
                 collision.gameObject.GetComponent<EnemyController>().isDeath = true;
             }
             else
             {
-                Debug.Log("Die");
+                anim.SetBool("isDead", true);
+                speed = 0;
+                gameController.GetComponent<GameController>().isLoose = true;
             }
         }
         else if(collision.collider.tag=="Block")
         {
-            if (transform.position.y - collision.gameObject.transform.position.y > 0.6f)
-            {
-                Debug.Log("Stand On");
-            }
-            else if (transform.position.y - collision.gameObject.transform.position.y < -0.55f)
+            if (transform.position.y - collision.gameObject.transform.position.y < -0.45f)
             {
                 Destroy(collision.gameObject);
             }
@@ -90,7 +91,7 @@ public class MarioController : MonoBehaviour
     {
         if (collision.tag == "Flag")
         {
-            Debug.Log("You Win");
+            gameController.GetComponent<GameController>().isWin = true;
         }
     }
 }

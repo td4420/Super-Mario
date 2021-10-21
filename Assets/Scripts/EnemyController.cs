@@ -24,15 +24,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x == minX)
+        if(transform.position.x <= minX)
         {
             isMoveLeft = false;
+            
         }
-        if(transform.position.x == maxX)
+        if(transform.position.x >= maxX)
         {
             isMoveLeft = true;
         }
-        if(!isDeath)
+        gameObject.GetComponent<SpriteRenderer>().flipX = !isMoveLeft;
+        if (!isDeath)
         {
             if (isMoveLeft)
             {
@@ -44,21 +46,6 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("isDeath", true);
             Destroy(gameObject,0.3f);
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.collider.tag=="Enemy")
-        {
-            collision.collider.isTrigger = true;
-        }
-        
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag=="Enemy")
-        {
-            collision.isTrigger = false;
         }
     }
 }
