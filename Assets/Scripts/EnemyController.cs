@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     bool isMoveLeft;
     public bool isDeath;
     Animator animator;
+    private GameObject gameController;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,11 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+        if (gameController.GetComponent<GameController>().isLoose)
+        {
+            speed = 0;
+        }
         if(transform.position.x <= minX)
         {
             isMoveLeft = false;

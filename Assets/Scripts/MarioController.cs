@@ -13,6 +13,8 @@ public class MarioController : MonoBehaviour
     private GameObject gameController;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioEffect;
+    public AudioClip jump, dead, breakBlock;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,9 @@ public class MarioController : MonoBehaviour
         anim.SetBool("isMoving", false);
         anim.SetBool("isFly", false);
         gameController = GameObject.FindGameObjectWithTag("GameController");
+        audioEffect = gameObject.AddComponent<AudioSource>();
+        audioEffect.playOnAwake = false;
+        audioEffect.loop = false;
     }
 
     // Update is called once per frame
@@ -58,6 +63,8 @@ public class MarioController : MonoBehaviour
         {
             obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, force));
             anim.SetBool("isFly", true);
+            audioEffect.clip = jump;
+            audioEffect.Play();
         }
         if(!Input.anyKey)
         {
@@ -77,12 +84,16 @@ public class MarioController : MonoBehaviour
                 anim.SetBool("isDead", true);
                 speed = 0;
                 gameController.GetComponent<GameController>().isLoose = true;
+                audioEffect.clip = dead;
+                audioEffect.Play();
             }
         }
         else if(collision.collider.tag=="Block")
         {
             if (transform.position.y - collision.gameObject.transform.position.y < -0.45f)
             {
+                audioEffect.clip = breakBlock;
+                audioEffect.Play();
                 Destroy(collision.gameObject);
             }
         }

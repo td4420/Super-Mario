@@ -10,7 +10,8 @@ public class GameController : MonoBehaviour
     public GameObject character, backGround;
     public Button restart, replay;
     public bool isLoose, isWin;
-   // public GameObject gameScreen;
+    private AudioSource source;
+    public AudioClip backgroundSound, gameOverSound, winnerSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,10 @@ public class GameController : MonoBehaviour
         winPanel.SetActive(false);
         restart.onClick.AddListener(ResetGame);
         replay.onClick.AddListener(ResetGame);
+        source = gameObject.AddComponent<AudioSource>();
+        source.clip = backgroundSound;
+        source.loop = true;
+        source.Play();
     }
 
     // Update is called once per frame
@@ -36,18 +41,25 @@ public class GameController : MonoBehaviour
     }
     IEnumerator GameOver()
     {
+        isLoose = false;
         yield return new WaitForSeconds(0.5f);
         gameOverPanel.SetActive(true);
         character.SetActive(false);
         backGround.SetActive(false);
-        
+        source.clip = gameOverSound;
+        source.Play();
+        source.loop = false;
     }
     IEnumerator Winner()
     {
+        isWin = false;
         yield return new WaitForSeconds(0.5f);
         winPanel.SetActive(true);
         character.SetActive(false);
         backGround.SetActive(false);
+        source.clip = winnerSound;
+        source.Play();
+        source.loop = false;
     }
     void ResetGame()
     {
