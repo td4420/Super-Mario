@@ -6,21 +6,27 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject gameOverPanel,winPanel;
+    public GameObject gameOverPanel,winPanel, pausePanel;
     public GameObject character, backGround;
-    public Button restart, replay;
+    public Button restart, replay, pause, resume, quit, rsPause;
     public bool isLoose, isWin;
     private AudioSource source;
     public AudioClip backgroundSound, gameOverSound, winnerSound;
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         isLoose = false;
         isWin = false;
         gameOverPanel.SetActive(false);
         winPanel.SetActive(false);
+        pausePanel.SetActive(false);
         restart.onClick.AddListener(ResetGame);
         replay.onClick.AddListener(ResetGame);
+        rsPause.onClick.AddListener(ResetGame);
+        pause.onClick.AddListener(PauseGame);
+        resume.onClick.AddListener(ResumGame);
+        quit.onClick.AddListener(QuitGame);
         source = gameObject.AddComponent<AudioSource>();
         source.clip = backgroundSound;
         source.loop = true;
@@ -42,7 +48,7 @@ public class GameController : MonoBehaviour
     IEnumerator GameOver()
     {
         isLoose = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         gameOverPanel.SetActive(true);
         character.SetActive(false);
         backGround.SetActive(false);
@@ -53,7 +59,7 @@ public class GameController : MonoBehaviour
     IEnumerator Winner()
     {
         isWin = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         winPanel.SetActive(true);
         character.SetActive(false);
         backGround.SetActive(false);
@@ -65,4 +71,24 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+        character.SetActive(false);
+        backGround.SetActive(false);
+        pause.enabled = false;
+    }
+    void ResumGame()
+    {
+        Time.timeScale = 1;
+        pausePanel.SetActive(false);
+        character.SetActive(true);
+        backGround.SetActive(true);
+        pause.enabled = true;
+    }
+    void QuitGame()
+    {
+        Application.Quit();
+    }   
 }
