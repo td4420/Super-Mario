@@ -18,8 +18,8 @@ public class MarioController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 4;
-        force = 350;
+        speed = 2.5f;
+        force = 250;
         isGrounded = true;
         isDead = false;
         obj = gameObject;
